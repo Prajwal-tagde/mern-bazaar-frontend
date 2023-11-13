@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
+const baseUrl = "https://mern-bazaar-backend.onrender.com";
+
 const Cart = () => {
 
   const productData = useSelector((state) => state.bazar.productData);
@@ -34,8 +36,10 @@ const Cart = () => {
       }
   }
 
+
+
   const payment = async (token) => {
-    await axios.post("http://localhost:8080/pay", {
+    await axios.post(`${baseUrl}/pay`, {
       amount: totalAmt * 100,
       token: token,
     })
